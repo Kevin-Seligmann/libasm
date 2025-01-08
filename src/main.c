@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+#include <errno.h>
+#include <stdlib.h>
 
 int ft_strlen(char *);
+char *ft_strcpy(char *dst, char *src);
 int ft_strcmp(char *, char *);
+ssize_t ft_write(int fd, const void *buf, size_t count);
+ssize_t ft_read(int fd, void *buf, size_t count);
 void _hello();
 
 void test_strlen()
@@ -24,10 +30,12 @@ void test_strlen()
 
 int main()
 {
-	test_strlen();
+	char *read;
 
-	printf("Returned %d\n", ft_strcmp("a", 0));
-	_hello();
-	printf("Should'n be here!");
+	read = calloc(25, 1);
+	ft_read(1, read, 4);
+	printf("%s %s\n", strerror(errno), read);
+	// _hello();
+	// printf("Should'n be here!");
 	return 0;
 }
