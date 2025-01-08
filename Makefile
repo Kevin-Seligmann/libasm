@@ -4,7 +4,7 @@ VPATH = src
 OBJ = hello.o
 
 # Target
-NAME = hello_world
+NAME = libasm.a
 
 # Project
 PROJ = libasm
@@ -24,8 +24,11 @@ OBJ_PATH = $(addprefix $(OBJ_DIR)/, $(OBJ))
 # Compilation Flags
 CFLAGS = -f elf64
 
+# Linker flags
+LFLAGS = -pie
+
 # Linker
-LK = ld
+LK = ar rcs
 
 # Compiler
 CC = nasm
@@ -39,7 +42,7 @@ NO_COLOR = "\e[0m"
 all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJ_PATH) Makefile
-	@$(LK) $(OBJ_PATH) -o $(NAME)
+	@$(LK) $(NAME) $(OBJ_PATH) 
 	@echo $(YELLOW)$(PROJ) - Creating exec:$(NO_COLOR) $(NAME)
 
 # Compilation
@@ -54,7 +57,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 clean:
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR) tester
 	@echo $(YELLOW)$(PROJ) - Removing:$(NO_COLOR) Object and dependency files
 
 fclean: clean
@@ -62,5 +65,8 @@ fclean: clean
 	@echo $(YELLOW)$(PROJ) - Removing:$(NO_COLOR) $(NAME) $(NAME_B)
 
 re: fclean all
+
+tester: all
+	cc -z noexecstack src/main.c libasm.a -o tester
 
 .PHONY: clean fclean all re $(OBJ_DIR)

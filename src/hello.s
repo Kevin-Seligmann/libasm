@@ -6,19 +6,20 @@ section .comment ; Unnecesary, but ok!
 ; write(int fd, const void buf[.count], size_t count);
 ; exit(int code);
 
-; Order of parameters: ebx, ecx, edx, esi, edi, ebp. result: eax
+; https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/ Syscall reference
 
 section .text; Instructions
-global _start ; Label (Entry point)
-_start: ; Entry point
-    mov ebx, 1 ; File descriptor (1) in the ebx register
-    mov ecx, msg  ; msg pointer in the ecx register
-    mov edx, len  ; len in the edx register
-    mov eax, 4 ; Write instruction in the eax register (For Systemcalls, must place instructions in EAX)
-    int 0x80 ; Call the kernel to execute the instruction (or 'syscall')
-    mov ebx, eax ; Move result into first argument (To see bytes written with $?)
-    mov eax, 1 ; Exit instruction in the eax register. (For Systemcalls, must place instruction in EAX)
-    int 0x80 ; Call the kernel to execute the instruction (or 'syscall')
+global _hello ; Label (Will be function name for C file)
+_hello:
+
+    mov rdi, 1 ; File descriptor (1) in the register
+    lea rsi, [rel msg]  ; msg pointer in the register (Rel for relative) (lea to load an address (Similar to &))
+    mov rdx, len  ; len in the register
+    mov rax, 1 ; sys_write instruction in the register 
+    syscall ; Call the kernel to execute the instruction
+    mov rdi, rax ; Move result into first argument (To see bytes written with $?)
+    mov rax, 60 ; Exit instruction in the eax register
+    syscall ; Call the kernel to execute the instruction
 
 section .data ; Read-write (.data1 too)
     msg        db "Hello world!", 0xa ; In the msg variable, store the data in the executable. (0xa is \n)
