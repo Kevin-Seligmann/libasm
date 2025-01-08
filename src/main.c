@@ -2,6 +2,7 @@
 #include <string.h>
 
 int ft_strlen(char *);
+int ft_strcmp(char *, char *);
 void _hello();
 
 void test_strlen()
@@ -25,7 +26,7 @@ int main()
 {
 	test_strlen();
 
-	printf("Returned %d\n", ft_strlen("a"));
+	printf("Returned %d\n", ft_strcmp("a", 0));
 	_hello();
 	printf("Should'n be here!");
 	return 0;
