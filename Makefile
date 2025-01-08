@@ -1,7 +1,7 @@
 VPATH = src
 
 # Files
-OBJ = hello.o
+OBJ = hello.o ft_strlen.o
 
 # Target
 NAME = libasm.a
