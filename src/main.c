@@ -9,6 +9,7 @@ char *ft_strcpy(char *dst, char *src);
 int ft_strcmp(char *, char *);
 ssize_t ft_write(int fd, const void *buf, size_t count);
 ssize_t ft_read(int fd, void *buf, size_t count);
+char *ft_strdup(const char *s);
 void _hello();
 
 void test_strlen()
@@ -30,11 +31,7 @@ void test_strlen()
 
 int main()
 {
-	char *read;
-
-	read = calloc(25, 1);
-	ft_read(1, read, 4);
-	printf("%s %s\n", strerror(errno), read);
+	printf("%p %s\n", ft_strdup("Hello"), ft_strdup("Hello"));
 	// _hello();
 	// printf("Should'n be here!");
 	return 0;
