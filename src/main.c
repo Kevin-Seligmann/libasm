@@ -19,6 +19,7 @@ char *ft_strdup(const char *s);
 int	ft_atoi_base(char *str, char *base);
 void ft_list_push_front(t_list **begin, void *data);
 int ft_list_size(t_list *begin_list);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
 
 void _hello();
 
@@ -60,21 +61,12 @@ int main()
 
 	print_list(*begin);
 	printf("len %d\n", ft_list_size(*begin));
-	ft_list_push_front(NULL, NULL);
-	printf("len %d\n", ft_list_size(*begin));
 	ft_list_push_front(begin, str1);
-	printf("len %d\n", ft_list_size(*begin));
-	printf(" \n ---- ----- \n");
-	print_list(*begin);
-	printf(" \n ---- --- \n");
 	ft_list_push_front(begin, str2);
-	printf("len %d\n", ft_list_size(*begin));
-	printf(" \n ---- --- \n");
-	print_list(*begin);
-	printf(" \n ---- --- \n");
 	ft_list_push_front(begin, str3);
-	printf("len %d\n", ft_list_size(*begin));
+	ft_list_sort(begin, strcmp);
 	print_list(*begin);
+	printf("len %d\n", ft_list_size(*begin));
 
 	return 0;
 }

@@ -1,7 +1,9 @@
 VPATH = src
 
 # Files
-OBJ = hello.o ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o ft_read.o ft_strdup.o ft_atoi_base.o ft_list_push_front.o ft_list_size.o
+OBJ = hello.o ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o\
+	ft_read.o ft_strdup.o ft_atoi_base.o ft_list_push_front.o ft_list_size.o\
+	ft_list_sort.o
 
 # Target
 NAME = libasm.a
