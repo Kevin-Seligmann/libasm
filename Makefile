@@ -1,7 +1,7 @@
 VPATH = src
 
 # Files
-OBJ = hello.o ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o ft_read.o ft_strdup.o ft_atoi_base.o ft_list_push_front.o
+OBJ = hello.o ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o ft_read.o ft_strdup.o ft_atoi_base.o ft_list_push_front.o ft_list_size.o
 
 # Target
 NAME = libasm.a
@@ -19,7 +19,7 @@ OBJ_PATH = $(addprefix $(OBJ_DIR)/, $(OBJ))
 # DEPS = $(OBJ_PATH:.o=.d)
 
 # Include
-# INCLUDES = -I./$(INC_DIR)
+INCLUDES = -I./$(INC_DIR)
 
 # Compilation Flags
 CFLAGS = -f elf64

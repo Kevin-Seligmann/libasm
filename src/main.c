@@ -18,6 +18,7 @@ ssize_t ft_read(int fd, void *buf, size_t count);
 char *ft_strdup(const char *s);
 int	ft_atoi_base(char *str, char *base);
 void ft_list_push_front(t_list **begin, void *data);
+int ft_list_size(t_list *begin_list);
 
 void _hello();
 
@@ -58,16 +59,21 @@ int main()
 	char *str3 = strdup("Hello, list");
 
 	print_list(*begin);
+	printf("len %d\n", ft_list_size(*begin));
 	ft_list_push_front(NULL, NULL);
+	printf("len %d\n", ft_list_size(*begin));
 	ft_list_push_front(begin, str1);
-	printf(" \n SEPARADOR !!! \n");
+	printf("len %d\n", ft_list_size(*begin));
+	printf(" \n ---- ----- \n");
 	print_list(*begin);
-	printf(" \n SEPARADOR !!! \n");
+	printf(" \n ---- --- \n");
 	ft_list_push_front(begin, str2);
-	printf(" \n SEPARADOR !!! \n");
+	printf("len %d\n", ft_list_size(*begin));
+	printf(" \n ---- --- \n");
 	print_list(*begin);
-	printf(" \n SEPARADOR !!! \n");
+	printf(" \n ---- --- \n");
 	ft_list_push_front(begin, str3);
+	printf("len %d\n", ft_list_size(*begin));
 	print_list(*begin);
 
 	return 0;

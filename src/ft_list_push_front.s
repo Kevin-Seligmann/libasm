@@ -1,14 +1,12 @@
-struc s_list
-    .data resq 1
-    .next resq 1 
-endstruc
-
 ; void	ft_list_push_front(t_list **begin_list, void *data)
+
+%include "ft_list.h"
 
 section .text
 extern malloc
 global ft_list_push_front
 ft_list_push_front:
+
     cmp rdi, 0
     je .return
 
