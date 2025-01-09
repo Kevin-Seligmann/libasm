@@ -1,7 +1,7 @@
 VPATH = src
 
 # Files
-OBJ = hello.o ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o ft_read.o ft_strdup.o
+OBJ = hello.o ft_strlen.o ft_strcpy.o ft_strcmp.o ft_write.o ft_read.o ft_strdup.o ft_atoi_base.o
 
 # Target
 NAME = libasm.a
@@ -67,6 +67,6 @@ fclean: clean
 re: fclean all
 
 tester: all
-	cc -z noexecstack src/main.c libasm.a -o tester
+	cc -z noexecstack -g src/main.c libasm.a -o tester
 
 .PHONY: clean fclean all re $(OBJ_DIR)
