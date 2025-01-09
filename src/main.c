@@ -4,6 +4,12 @@
 #include <errno.h>
 #include <stdlib.h>
 
+typedef struct s_list
+{
+	void			*data;
+	struct s_list	*next;
+}	t_list;
+
 int ft_strlen(char *);
 char *ft_strcpy(char *dst, char *src);
 int ft_strcmp(char *, char *);
@@ -11,6 +17,7 @@ ssize_t ft_write(int fd, const void *buf, size_t count);
 ssize_t ft_read(int fd, void *buf, size_t count);
 char *ft_strdup(const char *s);
 int	ft_atoi_base(char *str, char *base);
+void ft_list_push_front(t_list **begin, void *data);
 
 void _hello();
 
@@ -31,30 +38,37 @@ void test_strlen()
 	}
 }
 
+void print_list(t_list *list)
+{
+	printf("Printing: \n");
+	while (list)
+	{
+		printf("%p, %p, %p, %s\n", list, list->data, list->next, (char *) list->data);
+		list = list->next;
+	}
+}
 int main()
 {
-	printf("%d\n", ft_atoi_base("15", "0123456789"));
-	printf("%d\n", ft_atoi_base("0", "0123456789"));
-	printf("%d\n", ft_atoi_base("1000", "0123456789"));
-	printf("%d\n", ft_atoi_base("2147483647", "0123456789"));
-	printf("%d\n", ft_atoi_base("2147483648", "0123456789"));
+	t_list **begin;
 
-	printf("%d\n", ft_atoi_base("-15", "0123456789"));
-	printf("%d\n", ft_atoi_base("0", "0123456789"));
-	printf("%d\n", ft_atoi_base("-1000", "0123456789"));
-	printf("%d\n", ft_atoi_base("+-+-+-+--+-2147483647", "0123456789"));
-	printf("%d\n", ft_atoi_base("+-+-+-+--+2147483647", "0123456789"));
+	begin = malloc(sizeof(t_list *));
+	*begin = NULL;
+	char *str1 = strdup("hola");
+	char *str2 = strdup("chau");
+	char *str3 = strdup("Hello, list");
 
-	printf("%d\n", ft_atoi_base("15", "0"));
-	printf("%d\n", ft_atoi_base("15", "11"));
-	printf("%d\n", ft_atoi_base("15", "+0123456789"));
-	printf("%d\n", ft_atoi_base("15", "- 0123456789"));
-	printf("%d\n", ft_atoi_base("15", " 0123456789"));
+	print_list(*begin);
+	ft_list_push_front(NULL, NULL);
+	ft_list_push_front(begin, str1);
+	printf(" \n SEPARADOR !!! \n");
+	print_list(*begin);
+	printf(" \n SEPARADOR !!! \n");
+	ft_list_push_front(begin, str2);
+	printf(" \n SEPARADOR !!! \n");
+	print_list(*begin);
+	printf(" \n SEPARADOR !!! \n");
+	ft_list_push_front(begin, str3);
+	print_list(*begin);
 
-	printf("%d\n", ft_atoi_base("15", NULL));
-	printf("%d\n", ft_atoi_base(NULL, NULL));
-
-	printf("%d\n", ft_atoi_base("10", "01"));
-	printf("%d\n", ft_atoi_base("       ++-+-+-ff", "0123456789abcdef"));
 	return 0;
 }
